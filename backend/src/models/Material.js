@@ -14,6 +14,7 @@ const materialSchema = new mongoose.Schema(
     },
     pageCount: { type: Number, default: 0 },
     error: { type: String, default: '' }, 
+    data: { type: Buffer, select: false }
   },
   { timestamps: true },
 );

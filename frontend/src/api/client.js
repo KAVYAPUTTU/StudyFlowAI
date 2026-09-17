@@ -1,6 +1,6 @@
 const API_BASE = import.meta.env.VITE_API_URL ?? '';
 
-export async function api(path, { method = 'GET', body, token } = {}) {
+export async function api(path, { method = 'GET', body,form, token } = {}) {
   const response = await fetch(`${API_BASE}${path}`, {
     method,
     headers: {
@@ -8,6 +8,7 @@ export async function api(path, { method = 'GET', body, token } = {}) {
       ...(token ? { Authorization: `Bearer ${token}` } : {}),
     },
     ...(body ? { body: JSON.stringify(body) } : {}),
+    ...(form ? { body: form } : {}),
   });
 
   const data = await response.json().catch(() => ({}));

@@ -1,9 +1,11 @@
 import { createApp } from './app.js';
 import { env } from './config/env.js';
 import { connectDB, disconnectDB } from './db/mongoose.js';
-
+import { startWorker, stopWorker } from './workers/worker.js';
 async function start() {
   await connectDB();
+ 
+  startWorker();
 
   const app = createApp();
   app.listen(env.port, () => {
@@ -12,6 +14,9 @@ async function start() {
 }
 
 async function shutdown() {
+
+  stopWorker();
+
   await disconnectDB();
   process.exit(0);
 }
