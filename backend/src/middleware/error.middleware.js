@@ -1,5 +1,5 @@
 import { ApiError } from '../utils/apiError.js';
-import MulterError from 'multer';
+import { MulterError } from 'multer';
 
 export function notFound(req, res) {
     res.status(404).json({ error: `Route not found: ${req.method} ${req.originalUrl}` });
