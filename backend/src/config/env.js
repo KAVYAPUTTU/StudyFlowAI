@@ -23,4 +23,5 @@ export const env = {
     geminiTextModel: process.env.GEMINI_TEXT_MODEL || 'gemini-3.6-flash',
     geminiEmbeddingModel: process.env.GEMINI_EMBEDDING_MODEL || 'gemini-embedding-001',
     tutorMinSimilarity: Number(process.env.TUTOR_MIN_SIMILARITY) || 0.3, // below this = not enough evidence
+    adminEmail: process.env.ADMIN_EMAIL || '', // this email registers as role=admin
 };

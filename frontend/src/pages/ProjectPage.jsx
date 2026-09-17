@@ -5,6 +5,8 @@ import { api } from '../api/client.js';
 import { useAuth } from '../auth/AuthContext.jsx';
 import MaterialsTab from '../components/MaterialsTab.jsx';
 import TutorTab from '../components/TutorTab.jsx';
+import QuizTab from '../components/QuizTab.jsx';
+import GrowthTab from '../components/GrowthTab.jsx';
 
 const TABS = ['Overview', 'Materials', 'Tutor', 'Quiz', 'Growth'];
 
@@ -64,6 +66,10 @@ export default function ProjectPage() {
                     <MaterialsTab projectId={project._id} />
                 ) : tab === 'Tutor' ? (
                     <TutorTab projectId={project._id} />
+                ) : tab === 'Quiz' ? (
+                    <QuizTab projectId={project._id} />
+                ) : tab === 'Growth' ? (
+                    <GrowthTab projectId={project._id} />
                 ) : (
                     <p className="text-sm text-slate-400">
                         {tab} — coming in the next step.

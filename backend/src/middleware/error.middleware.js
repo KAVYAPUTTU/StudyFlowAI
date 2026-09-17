@@ -12,11 +12,16 @@ export function errorHandler(error, req, res, next) {
             error.code === 'LIMIT_FILE_SIZE' ? 'File is too large (max 8MB)' : `Upload error: ${error.message}`;
         return res.status(400).json({ error: message });
     }
-    if (error instanceof ApiError) {
-        return res.status(error.status).json({ error: error.message });
+    const status = error.status;
+    if (Number.isInteger(status) && status >= 400 && status < 500 && error.message) {
+        return res.status(status).json({ error: error.message });
     }
     if (error.message?.includes('GEMINI_API_KEY')) {
         return res.status(503).json({ error: 'AI service is not configured' });
+    }
+    // Provider still busy after retries -> client-friendly 503, not a 500
+    if (error.status === 429 || error.status === 503 || /high demand|overloaded/i.test(error.message ?? '')) {
+        return res.status(503).json({ error: 'The AI service is busy right now. Please try again in a moment.' });
     }
 
     // Mongoose schema validation -> 400

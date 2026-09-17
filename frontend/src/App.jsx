@@ -8,6 +8,7 @@ import LoginPage from './pages/LoginPage.jsx';
 import ProjectPage from './pages/ProjectPage.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
 import SpacePage from './pages/SpacePage.jsx';
+import AdminPage from './pages/AdminPage.jsx';
 
 export default function App() {
   return (
@@ -27,6 +28,7 @@ export default function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/spaces/:id" element={<SpacePage />} />
             <Route path="/projects/:id" element={<ProjectPage />} />
+            <Route path="/admin" element={<AdminPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
