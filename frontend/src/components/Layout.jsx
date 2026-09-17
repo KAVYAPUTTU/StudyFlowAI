@@ -16,7 +16,7 @@ export default function Layout() {
             <header className="border-b border-slate-200 bg-white">
                 <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
                     <Link to="/" className="text-lg font-semibold text-indigo-600">
-                        AI Study Companion
+                        StudyFlowAI
                     </Link>
                     <div className="flex items-center gap-3 text-sm">
                         {user?.role === 'admin' && (
