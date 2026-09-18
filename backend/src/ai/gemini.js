@@ -253,7 +253,7 @@ const quizSchema = {
             keyPoints: { type: Type.ARRAY, items: { type: Type.STRING } },
             sourcePage: { type: Type.INTEGER },
         },
-        required: ['type', 'concept', 'difficulty', 'prompt', 'sourcePage'],
+        required: ['type', 'concept', 'difficulty', 'prompt', 'sourcePage','answer'],
     },
 };
 export async function generateQuiz({ goal, conceptEvidence, masteryHint }, context = {}) {
@@ -270,7 +270,7 @@ export async function generateQuiz({ goal, conceptEvidence, masteryHint }, conte
         conceptEvidence,
         '',
         'RULES:',
-        '- Create exactly one question per CONCEPT tag above.',
+        '- Return exactly one question per CONCEPT tag above - one item per tag, never fewer.',
         '- Mix types: at least one "mcq" and at least one "open".',
         '- difficulty: 1-5. For weak concepts test basic understanding; for stronger ones test application.',
         '- mcq: exactly 4 options and an `answer` field holding the FULL TEXT of the correct option.',
